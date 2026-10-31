@@ -1,6 +1,6 @@
 # Canopy — Real-time IVF Monitoring System
 
-A working prototype for the capstone brief: *Real-time IVF Monitoring System for
+A working prototype for the capstone brief: *Real-time Internal Vertical Farm Monitoring System for
 Optimized Plant Growth and Reduced Water Consumption*.
 
 **Stack (as required by the brief):** Python Flask · TensorFlow 2.x · MongoDB · D3.js
