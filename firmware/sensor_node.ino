@@ -4,9 +4,9 @@
 #include <HTTPClient.h>
 #include <DHT.h>
 
-const char* WIFI_SSID     = "prahlad 2.4";
-const char* WIFI_PASSWORD = "millionera";
-const char* SERVER_URL    = "http://192.168.1.40:5000/api/ingest";  // your laptop's IPv4 address
+const char* WIFI_SSID     = "********";
+const char* WIFI_PASSWORD = "*********";
+const char* SERVER_URL    = "http://192.168.1.40:5000/api/ingest";  
 
 const int SOIL_DRY_RAW = 2084;
 const int SOIL_WET_RAW = 1191;
