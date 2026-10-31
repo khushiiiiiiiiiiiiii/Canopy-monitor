@@ -1,4 +1,4 @@
-# Canopy — Real-time IVF Monitoring System
+# Canopy — Real-time Internal Vertical Farm Monitoring System
 
 A working prototype for the capstone brief: *Real-time Internal Vertical Farm Monitoring System for
 Optimized Plant Growth and Reduced Water Consumption*.
@@ -36,7 +36,7 @@ MongoDB is optional for local development — if it isn't running, the app logs
 (you just lose persistence across restarts). To use real MongoDB:
 
 ```bash
-export IVF_MONGO_URI="mongodb://localhost:27017"   # or your Atlas connection string
+export CANOPY_MONGO_URI="mongodb://localhost:27017"   # or your Atlas connection string
 ```
 
 ## Connecting real ESP32 hardware
@@ -55,7 +55,7 @@ export IVF_MONGO_URI="mongodb://localhost:27017"   # or your Atlas connection st
 3. Turn off the simulator so it doesn't mix with real readings:
 
    ```bash
-   export IVF_USE_SIMULATOR=0
+   export CANOPY_USE_SIMULATOR=0
    python app.py
    ```
 
@@ -96,14 +96,14 @@ Tune the 30 and 70 to your plant (watch when it actually looks like it needs wat
 
 The brief calls for a weather API to inform watering schedules. To wire one in:
 get a free key from [OpenWeatherMap](https://openweathermap.org/api), set
-`IVF_WEATHER_API_KEY`, and extend `api_predict()` in `app.py` to factor
+`CANOPY_WEATHER_API_KEY`, and extend `api_predict()` in `app.py` to factor
 forecasted humidity/temperature into the prediction — the model and endpoint
 are already structured to make this a small addition rather than a rearchitect.
 
 ## Project structure
 
 ```
-ivf-monitor/
+canopy-monitor/
 ├── app.py                  # Flask app, routes, alerting, simulator
 ├── model/
 │   └── predictor.py        # TensorFlow watering-prediction model
