@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IVF Monitor — Vertical Farm Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div>
+        <h1>Canopy</h1>
+        <p class="brand-sub">Indoor Vertical Farm Monitor</p>
+      </div>
+    </div>
+    <div class="status" id="connStatus">
+      <span class="dot" id="connDot"></span>
+      <span id="connLabel">Connecting…</span>
+    </div>
+  </header>
+
+  <section class="advice" id="advice">
+    <p class="advice-label">Watering advice</p>
+    <p class="advice-title" id="advice-title">Waiting for sensor data…</p>
+    <p class="advice-detail" id="advice-detail"></p>
+  </section>
+
+  <section class="hero">
+    <div class="reading-card" data-metric="soil_moisture">
+      <p class="reading-label">Soil Moisture</p>
+      <p class="reading-value"><span id="val-soil">--</span><span class="unit">%</span></p>
+      <p class="reading-range">Safe range 30–70%</p>
+    </div>
+    <div class="reading-card" data-metric="temperature">
+      <p class="reading-label">Air Temperature</p>
+      <p class="reading-value"><span id="val-temp">--</span><span class="unit">°C</span></p>
+      <p class="reading-range">Safe range 18–29°C</p>
+    </div>
+    <div class="reading-card" data-metric="humidity">
+      <p class="reading-label">Air Humidity</p>
+      <p class="reading-value"><span id="val-humidity">--</span><span class="unit">%</span></p>
+      <p class="reading-range">Safe range 40–80%</p>
+    </div>
+    <div class="reading-card predict-card">
+      <p class="reading-label">Next Watering</p>
+      <p class="reading-value"><span id="val-predict">--</span><span class="unit" id="predict-unit">hrs</span></p>
+      <p class="reading-range" id="water-savings">Estimating savings…</p>
+    </div>
+  </section>
+
+  <section class="charts">
+    <div class="chart-panel">
+      <h2>Soil moisture — last 60 min</h2>
+      <div id="chart-soil" class="chart"></div>
+    </div>
+    <div class="chart-panel">
+      <h2>Temperature &amp; humidity — last 60 min</h2>
+      <div id="chart-envc" class="chart"></div>
+    </div>
+  </section>
+
+  <section class="lower">
+    <div class="alerts-panel">
+      <h2>Alerts</h2>
+      <ul id="alertList" class="alert-list">
+        <li class="alert-empty">No threshold breaches yet.</li>
+      </ul>
+    </div>
+
+    <div class="about-panel">
+      <h2>How this works</h2>
+      <p>Soil moisture, air temperature, and humidity readings arrive from sensor nodes over <code>/api/ingest</code>, land in MongoDB, and feed a TensorFlow model that learns each zone's drying rate to predict when the next watering cycle is actually needed — instead of watering on a fixed timer.</p>
+      <p>A demo simulator is generating readings right now so you can see the system live. Point real ESP32 + soil moisture/DHT22 sensor hardware at <code>/api/ingest</code> and set <code>IVF_USE_SIMULATOR=0</code> to switch over.</p>
+    </div>
+  </section>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
